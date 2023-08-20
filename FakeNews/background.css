@@ -1,0 +1,8 @@
+.gradient {
+  background-color: red;
+  background-image:
+    radial-gradient(
+      #E0F9F5,
+      #90F0E1
+    );
+}

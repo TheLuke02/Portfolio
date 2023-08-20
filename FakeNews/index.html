@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="icon.svg" />
+
+    <!-- Mio css -->
+    <link rel="stylesheet" href="background.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>LeBigNews - Fake news</title>
+  </head>
+  <body class="gradient">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+    <!-- Immagini laterali -->
+    <div class="container-fluid">
+      <img src="Fixed.gif" class="position-fixed top-50 start-0 d-none d-lg-block">
+    </div>
+
+    <div class="container-fluid">
+      <img src="Fixed.gif" class="position-fixed top-50 end-0 d-none d-lg-block">
+    </div>
+
+    <!-- Navabar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="font-family: 'Staatliches', cursive;" href="#">
+          <img src="icon.svg" alt="" width="30" height="24">
+          LEBIGNEWS
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cronaca</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Politica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Economia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sport</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Spettacoli</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tech</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Galleria</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Altre sezioni
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Lavoro</a></li>
+                <li><a class="dropdown-item" href="#">Italia</a></li>
+                <li><a class="dropdown-item" href="#">Inchieste</a></li>
+                <li><a class="dropdown-item" href="#">Blog</a></li>
+                <li><a class="dropdown-item" href="#">Bufale Online</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Carosello e Header -->
+    <div class="container">
+      <br>
+      <h1 class="text-center display-1" style="font-family: 'Staatliches', cursive;">
+        LEBIGNEWS
+      </h1>
+      <hr>
+      <div class="row">
+        <div class="col">
+        </div>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="1.png" class="d-block w-100 rounded-pill" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="2.png" class="d-block w-100 rounded-pill" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="3.png" class="d-block w-100 rounded-pill" alt="...">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+      <br>
+      <h2 class="text-center" style="font-family: 'Montserrat', sans-serif; color: #3C47AD;">
+        Bufale online:
+      </h2>
+      <h3 class="text-center" style="font-family: 'Courgette', cursive; color: #3C47AD;">
+        Come riconoscere le fake news sulla salute
+      </h3>
+    </div>
+
+    <br>
+
+
+      <!-- Testo articolo -->
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+          </div>
+          <div class="col-8">
+            <div id="list-example" class="list-group text-center" style="font-family: 'Kanit', sans-serif;">
+              <a class="list-group-item list-group-item-action" href="#list-item-1">Le fake news</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-2">Come verificare una notizia</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-3">Facebook e Google contro le fake news</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-4">Le fake news più comuni</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-5">Le regole dell'UNASMI</a>
+            </div>
+            <hr>
+            <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+              <h4 id="list-item-1">Cosa sono le fake news</h4>
+              <p class="text-start">
+                Il termine <a href="https://it.wikipedia.org/wiki/Fake_news" class="link-danger">fake news</a> è composto dalle due parole inglesi "fake" (in italiano "falso") e
+                "news" (inglese per "notizia").
+                Le fake news, in italiano note anche come "bufale", contengono informazioni false deliberatamente inserite con l'obiettivo di attirare
+                l'attenzione tramite un contenuto verosimile e scioccare o influenzare l'opinione altrui. Con l'avvento di internet le fake news sono spopolate al suo interno
+                creando molta confusione e mal-informazione.
+              </p>
+              <h4 id="list-item-2">Come verificare la notizia</h4>
+              <p class="text-start">
+                Adesso che sappiamo cosa sono le fake news dobbiamo anche capire come trovarle e contrastarle!
+                Il giornalista Craig Silverman, esperto di <a href="https://it.wikipedia.org/wiki/Verifica_dei_fatti" class="link-danger">fact-checking</a>,
+                ha creato un elenco di 6 semplici regole:<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>Link:</b> Per vedere se effettivamente portano alla fonte che dice di linkare oppure no; in generale, è meglio essere diffidenti degli articoli che hanno pochi (o nessun) link.<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>Dichiarazioni:</b>  Molti siti che diffondono “fake news” spesso hanno un disclaimer in cui indicano che si tratta di un sito di satira.<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>Fonti:</b> se provengono da una persona nota, basta selezionare la frase e lanciare una ricerca su Google tra virgolette.
+                 In questo modo si può controllare se le stesse parole sono state riprese anche da altre fonti; in caso contrario, meglio approfondire.<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>Autori:</b> Controlla sempre se all'interno dell'articolo è specificato chi l'ha effettivamente scritto e se ne ha scritti altri, in caso contrario
+                diffida di ciò che leggi<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>URL del sito:</b> Controllate sempre che il sito non abbia un <a href="https://it.wikipedia.org/wiki/Uniform_Resource_Locator" class="link-danger">URL</a> storpiato dalla testata
+                giornalistica originale come per esempio “Rebubblica” o “Il Fato Quotidiano”.<br>
+                <text style="color: #EC546C; font-size: 25px; font-weight: bold;">
+                  >
+                </text>
+                <b>Ricerca inversa delle immagini:</b> basta andare su Google Immagini e caricare un’immagine sospetta per scoprire
+                se è stata già pubblicata altrove o se si riferisce a un altro evento.<br>
+              </p>
+              <h4 id="list-item-3">Facebook e Google contro le fake news</h4>
+              <p class="text-start">
+                Le grandi piattaforme come Google e Facebook, dopo essere finite nel mirino delle accuse per agevolare
+                la diffusione online di false notizie, hanno dovuto prendere dei seri provvedimenti.
+                Difatti, Google è entrato nel progetto <a href="https://firstdraftnews.org" class="link-danger">“First Draft News”</a>, una coalizione di 7 importanti media contro qualsiasi tipo di
+                disinformazione online. Facebook, invece, ha messo a punto un filtro contro le fake news sia in Giappone che in America.
+              </p>
+              <h4 id="list-item-4">Le fake news più comuni</h4>
+              <p class="text-start">
+                Esistono svariate fake news su internet che riguardano la nostra salute e tutto ciò che la circonda (Sport, Tumori, Vaccini, Malattie infettive, Alimentazione, ecc).
+                A cause di queste fake news che dilagano all'interno del web c'è tantissima ignoranza all'interno di questo campo e molto spesso accadono anche fatti molto spiacevoli come il caso
+                di questo tiktoker che ha <a href="https://www.youtube.com/watch?v=QKIobyk6Isc&t=459s" class="link-danger">bevuto un litro di sciroppo per la tosse</a> pensando che non fosse nocivo (In America
+                Lo sciroppo si usa per creare dei drink ma viene utilizzato in piccole quantità). Per evitare altri episodi simili fai un salto all'interno di
+                questo <a href="https://www.issalute.it/index.php/falsi-miti" class="link-danger">sito</a> e condividilo per combattere la disinformazione!
+              </p>
+              <h4 id="list-item-5">Le regole dell'UNASMI</h4>
+              <p class="text-start">
+                Alle poche regole scritte precedentemente che valgono per la verifica di qualsiasi notizia pubblicata in rete si aggiunge il decalogo contro le fake news sulla salute,
+                pubblicato da UNASMI, l'Unione NAzionale Medico Scientifica di Informazione. Questo decalogo contiene ben 10 regole per riuscire ad identificare correttamente se
+                la notizia che stai leggendo è veritiera o meno nel campo della salute quotidiana.
+                <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  1]
+                </text>
+                <b style="font-weight: 625;">VERIFICARE LA FONTE</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  2]
+                </text>
+                <b style="font-weight: 625;">ACCERTARSI DELL’AGGIORNAMENTO DEL SITO</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  3]
+                </text>
+                <b style="font-weight: 625;">CURE MEDICHE: EVITARE IL “FAI DA TE”</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  4]
+                </text>
+                <b style="font-weight: 625;">DIFFIDARE DELLE PRESCRIZIONI SENZA VISITA</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  5]
+                </text>
+                <b style="font-weight: 625;">MONITORARE IL RISPETTO DELLA PRIVACY</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  6]
+                </text>
+                <b style="font-weight: 625;">VALUTARE CON LA GIUSTA ATTENZIONE BLOG E FORUM</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  7]
+                </text>
+                <b style="font-weight: 625;">OCCHIO AI MOTORI DI RICERCA</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  8]
+                </text>
+                <b style="font-weight: 625;">NON “ABBOCCARE” ALLA PUBBLICITA’ MASCHERATA</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  9]
+                </text>
+                <b style="font-weight: 625;">ACQUISTARE CON CAUTELA FARMACI ONLINE</b> <br>
+                <text style="color: #EC546C; font-size: 20px; font-weight: bold;">
+                  10]
+                </text>
+                <b style="font-weight: 625;">NON CASCARE NELLA PSICOSI DEL COMPLOTTO</b> <br>
+                Per maggiori informazioni visita il loro <a href="http://unamsi.it/decalogo1/" class="link-danger">sito ufficiale</a>.
+              </p>
+            </div>
+          </div>
+        <div class="col-2">
+        </div>
+      </div>
+
+      <br>
+      <!-- Immagini -->
+      <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-3">
+          <img class="img-fluid rounded-3" src="FirstIMG.jpg">
+        </div>
+        <div class="col-3">
+          <img class="img-fluid rounded-3" src="SecondIMG.jpg">
+        </div>
+        <div class="col-3">
+        </div>
+      </div>
+
+      <br>
+      <!-- Autore articolo -->
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <div class="text-center">
+            <h5>
+              Articolo a cura di La Spina Luca
+            </h5>
+          </div>
+        </div>
+        <div class="col-2">
+      </div>
+    </div>
+  </div>
+
+    <br>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark rounded-top">
+      <div class="container text-center">
+        <h5 class="text-warning">
+          Fonti sitografiche:
+        </h5>
+        <h6 class="text-light">
+          <br>
+          <a href="https://www.paginemediche.it/benessere/salute-digitale/bufale-online-come-riconoscere-le-fake-news">Pagine Mediche</a>
+          <br>
+          <a href="https://it.wikipedia.org/wiki/Pagina_principale">Wikipedua</a>
+          <br>
+          <a href="http://unamsi.it">UNAMSI</a>
+        </h6>
+      </div>
+      <!-- /.container -->
+    </footer>
+  </body>
+</html>

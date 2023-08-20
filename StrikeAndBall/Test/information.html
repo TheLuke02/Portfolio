@@ -1,0 +1,55 @@
+<html>
+    <head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<title>AJAX con jQuery</title>
+    <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			function invia()
+			{
+				$.ajax({
+					url: "scriptServer.php",
+					dataType : 'json',
+
+					success: function( response ) {
+
+						drawTable(response);
+					},
+                   error: function(xhr, ajaxOptions, thrownError, response) {
+                     console.log(response);  
+                       alert(response);
+                       alert(xhr.status);
+                       alert(thrownError);
+
+                   }
+				});
+			}
+			function drawTable(data) {
+				for (var i = 0; i < data.length; i++) {
+					drawRow(data[i]);
+				}
+			}
+			function drawRow(rowData) {
+				var row = $("<tr />")
+				//$("#StudentiTable").append(row);
+				row.append($("<td>" + rowData.IDUtente + "</td>"));
+				row.append($("<td>" + rowData.Nome + "</td>"));
+				row.append($("<td>" + rowData.Cognome + "</td>"));
+                $("#StudentiTable").append(row);
+			}
+			</script>
+    </head>
+    <body>
+      	<button type="button" class="btn btn-primary" onclick="invia()">Carica Tabella</button>
+		<table class="table table-hover">
+		<caption>Tabella Utenti</caption>
+			<tr>
+				<th>IDUtente</th>
+				<th>Nome</th>
+				<th>Cognome</th>
+			</tr>
+			<tbody id="StudentiTable">
+
+			</tbody>
+		</table>
+    </body>
+</html>

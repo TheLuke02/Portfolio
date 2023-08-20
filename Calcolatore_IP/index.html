@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>IP Calculator</title>
+    <link rel="icon" type="image/png" href="https://lucalaspina.netsons.org/image/favicon.png"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        let IP = ["", "", "", ""], Network = ["", "", "", ""], Broadcast = ["", "", "", ""], SUB = ["", "", "", ""], Test = ["", "", "", ""];
+        let sep = 0, i = 0, j = 0, x = 8, counter = 0, indirizzi = 0, progressNumber = 0, Bar = 0;
+        let Classe = "", N = "", temp = "", error = "";
+        let check = false, flag = false, barflag = false;
+        let progressBar = $('.progress-bar');
+
+        function Convert() {
+            IP = ["", "", "", ""], Network = ["", "", "", ""], Broadcast = ["", "", "", ""], SUB = ["", "", "", ""], Test = ["", "", "", ""];
+            sep = 0, i = 0, j = 0, x = 8, counter = 0, indirizzi = 0, progressNumber = 0, Bar = 0;
+            N = "", temp = "", Classe = "", error = "";
+            check = false, flag = false, barflag = false;
+            progressBar = $('.progress-bar');
+
+            IP[0] = document.getElementById("IP1").value;
+            IP[1] = document.getElementById("IP2").value;
+            IP[2] = document.getElementById("IP3").value;
+            IP[3] = document.getElementById("IP4").value;
+            Test[0] = document.getElementById("IP1").value;
+            Test[1] = document.getElementById("IP2").value;
+            Test[2] = document.getElementById("IP3").value;
+            Test[3] = document.getElementById("IP4").value;
+            sep = document.getElementById("SUB").value;
+
+
+            for(i = 0; i < 4;i++){
+                if((IP[i] < 0) || (IP[i] > 255) || (!IP[i]) || (isNaN(parseInt(IP[i],10)))){
+                    check = true;
+                    error = "IP" + (i + 1);
+                    document.getElementById(error).style = "border: 2px solid red";
+                }
+                else {
+                    error = "IP" + (i + 1);
+                    document.getElementById(error).style = "";
+                }
+            }
+            if((sep <= 0) || (sep > 32) || (isNaN((sep)))){
+                check = true;
+                document.getElementById("SUB").style = "border: 2px solid red";
+            }
+            else {
+                document.getElementById("SUB").style = "";
+            }
+
+            if(((IP[0] === "255") && (IP[1] === "255") && (IP[2] === "255") && (IP[3] === "255")) && ((sep === "32") || (sep === "31"))){
+                check = true;
+                document.getElementById("IP1").style = "border: 2px solid red";
+                document.getElementById("IP2").style = "border: 2px solid red";
+                document.getElementById("IP3").style = "border: 2px solid red";
+                document.getElementById("IP4").style = "border: 2px solid red";
+                document.getElementById("SUB").style = "border: 2px solid red";
+            }
+            if((IP[0] === "0") && (IP[1] === "0") && (IP[2] === "0") && (IP[3] === "0")){
+                document.getElementById("IP1").style = "border: 2px solid red";
+                document.getElementById("IP2").style = "border: 2px solid red";
+                document.getElementById("IP3").style = "border: 2px solid red";
+                document.getElementById("IP4").style = "border: 2px solid red";
+                check = true;
+            }
+
+            for (i = 0; i < 4; i++) {
+                IP[i] = parseInt(IP[i]).toString();
+                if(IP[i] !== Test[i]) {
+                    check = true;
+                    error = "IP" + (i + 1);
+                    document.getElementById(error).style = "border: 2px solid red";
+                }
+            }
+
+            if(check === false) {
+                document.getElementById("IP1").style = "";
+                document.getElementById("IP2").style = "";
+                document.getElementById("IP3").style = "";
+                document.getElementById("IP4").style = "";
+                document.getElementById("SUB").style = "";
+
+                for (i = 0; i < 4; i++) {
+                    IP[i] = parseInt(IP[i]).toString(2);
+                    IP[i] = ("00000000" + IP[i].toString(2)).slice(-8);
+                }
+
+                for (i = 0; i < sep; i++) {
+                    temp += "1";
+                }
+                for (i = 0; i < 32 - sep; i++) {
+                    temp += "0";
+                }
+
+                for (j = 0; j < 4; j++) {
+                    for (i = x - 8; i < x; i++) {
+                        SUB[j] += temp[i];
+                    }
+                    x += 8;
+                }
+                NBitwise(IP, SUB);
+                BBitwise(Network);
+                Class(IP, sep);
+                if(sep !== "32") {
+                    indirizzi = Math.pow(2, 32 - sep) - 2;
+                }
+                else {
+                    indirizzi = 0;
+                }
+                console.log(IP[0] + "." + IP[1] + "." + IP[2] + "." + IP[3]);
+                console.log(SUB[0] + "." + SUB[1] + "." + SUB[2] + "." + SUB[3]);
+                console.log(Network[0] + "." + Network[1] + "." + Network[2] + "." + Network[3]);
+                console.log(Broadcast[0] + "." + Broadcast[1] + "." + Broadcast[2] + "." + Broadcast[3]);
+                console.log(indirizzi);
+                console.log(Classe);
+
+                Bar = setInterval(Fun_Bar, 100);
+            }
+            else{
+                document.getElementById("bar").innerHTML = "Errore";
+                progressBar.css('width', "0%");
+                progressBar.attr('aria-valuenow', 0);
+                document.getElementById("IP").innerHTML = "Errore";
+                document.getElementById("SUBNET").innerHTML = "Errore";
+                document.getElementById("NI").innerHTML = "Errore";
+                document.getElementById("BI").innerHTML = "Errore";
+                document.getElementById("IND").innerHTML = "Errore";
+                document.getElementById("CLASSE").innerHTML = "Errore";
+                check = false;
+            }
+        }
+        function Fun_Bar() {
+            document.getElementById("button").disabled=true;
+            progressBar = $('.progress-bar');
+            progressNumber += 3;
+            document.getElementById("bar").innerHTML = progressNumber + "%...";
+            console.log(progressNumber);
+            progressBar.css('width', progressNumber + '%');
+            progressBar.attr('aria-valuenow', progressNumber);
+            if(progressNumber > 100){
+                document.getElementById("bar").innerHTML = "Caricamento completato.";
+                clearInterval(Bar);
+                document.getElementById("IP").innerHTML = IP[0] + "." + IP[1] + "." + IP[2] + "." + IP[3] + " - " + parseInt(IP[0], 2) + "." + parseInt(IP[1], 2) + "." + parseInt(IP[2], 2) + "." + parseInt(IP[3], 2);
+                document.getElementById("SUBNET").innerHTML = SUB[0] + "." + SUB[1] + "." + SUB[2] + "." + SUB[3] + " - " + parseInt(SUB[0], 2) + "." + parseInt(SUB[1], 2) + "." + parseInt(SUB[2], 2) + "." + parseInt(SUB[3], 2);
+                document.getElementById("NI").innerHTML = Network[0] + "." + Network[1] + "." + Network[2] + "." + Network[3] + " - " + parseInt(Network[0], 2) + "." + parseInt(Network[1], 2) + "." + parseInt(Network[2], 2) + "." + parseInt(Network[3], 2);
+                document.getElementById("BI").innerHTML = Broadcast[0] + "." + Broadcast[1] + "." + Broadcast[2] + "." + Broadcast[3] + " - " + parseInt(Broadcast[0], 2) + "." + parseInt(Broadcast[1], 2) + "." + parseInt(Broadcast[2], 2) + "." + parseInt(Broadcast[3], 2);
+                document.getElementById("IND").innerHTML = indirizzi;
+                document.getElementById("CLASSE").innerHTML = Classe;
+                document.getElementById("button").disabled=false;
+            }
+        }
+
+        function NBitwise(IP_, SUB_) {
+            N = "";
+            for(i = 0;i < 4;i++){
+                for(j = 0;j < 8;j++){
+                    if((IP_[i][j] === "1") && (SUB_[i][j] === "1")){
+                        N += "1";
+                    }
+                    else{
+                        N += "0";
+                    }
+                }
+                Network[i] = N;
+                N = "";
+            }
+        }
+
+        function BBitwise(Network_) {
+            N = "";
+            for(i = 0;i < 4;i++){
+                for(j = 0;j < 8;j++){
+                    N += Network_[i][j];
+                    counter++;
+                    if(counter === Number(sep)){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag === true){
+                    flag = false;
+                    break;
+                }
+            }
+
+            while(counter !== 32){
+                N += "1";
+                counter++;
+            }
+            Broadcast[0] = N.substr(0,8);
+            Broadcast[1] = N.substr(8,8);
+            Broadcast[2] = N.substr(16,8);
+            Broadcast[3] = N.substr(24,8);
+        }
+
+        function Class(IP_, sep_) {
+            if((IP_[0].substr(0,1) === "0") && (sep_ === "8")){
+                Classe = "A";
+            }
+            else if((IP_[0].substr(0,2) === "10") && (sep_ === "16")){
+                Classe = "B";
+            }
+            else if((IP_[0].substr(0,3) === "110") && (sep_ === "24")) {
+                Classe = "C";
+            }
+            else {
+                Classe = "None";
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+    <br>
+    <div class="container-fluid">
+        <div class="align-item-center">
+            <div class="d-flex justify-content-center">
+                <h1>Calcolatore di IPv4</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <form class="form-group row">
+        <div class="container-fluid">
+            <div class="align-item-center">
+                <div class="d-flex justify-content-center">
+                    <div class="col-1">
+                        <input id="IP1" type="text" class="maxLength text-center form-control" maxlength="3">
+                    </div>
+                    <br>
+                    <h1>.</h1>
+                    <div class="col-1">
+                        <input id="IP2" type="text" class="maxLength text-center form-control" maxlength="3">
+                    </div>
+                    <br>
+                    <h1>.</h1>
+                    <div class="col-1">
+                        <input id="IP3" type="text" class="maxLength text-center form-control" maxlength="3">
+                    </div>
+                    <br>
+                    <h1>.</h1>
+                    <div class="col-1">
+                        <input id="IP4" type="text" class="maxLength text-center form-control" maxlength="3">
+                    </div>
+                    <h2>/</h2>
+                    <div class="col-1">
+                        <input id="SUB" type="text" class="maxLength text-center form-control" maxlength="2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="align-item-center">
+            <div class="d-flex justify-content-center">
+                <button type="button" id="button" class="btn btn-outline-primary" onclick="Convert();">Invia</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container" style="width: 500px">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div style="text-align: center;">
+            <p id="bar">0%</p>
+        </div>
+    </div>
+    <br>
+    <div class="container-sm">
+        <div class="align-item-center">
+            <div class="d-flex justify-content-center">
+                <table class="table" style="width: 600px">
+                    <tbody>
+                    <tr>
+                        <th scope="row">IP:</th>
+                        <td id="IP">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">SubnetMask:</th>
+                        <td id="SUBNET">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Network IP:</th>
+                        <td id="NI">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Broadcast IP:</th>
+                        <td id="BI">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Host:</th>
+                        <td id="IND">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Classe pura:</th>
+                        <td id="CLASSE">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="align-item-center">
+            <div class="d-flex justify-content-center">
+                <a href="Calcolatore IPv4.zip">
+                    <button type="button" class="btn btn-success">Scarica il software</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="container-fluid">
+        <div class="align-item-center">
+            <div class="d-flex justify-content-center">
+                <p class="font-weight-bolder">Sito ideato e progettato da La Spina Luca 4EI. <a style="text-align: center" href="https://lucalaspina.netsons.org/">Torna al portfolio</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

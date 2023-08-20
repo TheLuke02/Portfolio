@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Gioco del TRIS</title>
+    <link rel="icon" type="image/png" href="https://lucaportfolio.live/image/favicon.png"/>
+    <link href="stile.css" rel="stylesheet" type="text/css">
+    <script>
+        var p = 0;
+        var N0,N1,N2,N3,N4,N5,N6,N7,N8;
+        var pos = [8];
+        var mode = null;
+        var FlagCheck = false;
+        var AllFlag = false;
+        function Change(id, position){
+            if(AllFlag == false) {
+                if (mode === false) {
+                    if (p % 2 === 0) {
+                        document.getElementById(id).replaceWith("X");
+                        pos[position] = "X";
+                        p++;
+                    } else {
+                        document.getElementById(id).replaceWith("O");
+                        pos[position] = "O";
+                        p++;
+                    }
+                } else {
+                    document.getElementById(id).replaceWith("X");
+                    pos[position] = "X";
+                    p++;
+                    Check();
+                    if (FlagCheck == false) {
+                        var flag = false;
+                        console.log(p);
+                        <!-- Posizione 0 del tris -->
+                        if ((((pos[1] == 'O') && (pos[2] == 'O')) || ((pos[6] == 'O') && (pos[3] == 'O')) || ((pos[8] == 'O') && (pos[4] == 'O'))) && ((pos[0] != 'O') && (pos[0] != 'X') && (flag == false) && (N0 != true))) {
+                            document.getElementById('0,0').replaceWith('O');
+                            pos[0] = "O";
+                            p++;
+                            flag = true;
+                            N0 = true;
+                        }
+
+                        <!-- Posizione 1 del tris -->
+                        if ((((pos[0] == 'O') && (pos[2] == 'O')) || ((pos[7] == 'O') && (pos[4] == 'O'))) && ((pos[1] != 'O') && (pos[1] != 'X') && (flag == false) && (N1 != true))) {
+                            document.getElementById('1,0').replaceWith('O');
+                            pos[1] = "O";
+                            p++;
+                            flag = true;
+                            N1 = true;
+                        }
+
+                        <!-- Posizione 2 del tris -->
+                        if ((((pos[0] == 'O') && (pos[1] == 'O')) || ((pos[6] == 'O') && (pos[4] == 'O')) || ((pos[8] == 'O') && (pos[5] == 'O'))) && ((pos[2] != 'O') && (pos[2] != 'X') && (flag == false) && (N2 != true))) {
+                            document.getElementById('2,0').replaceWith('O');
+                            pos[2] = "O";
+                            p++;
+                            flag = true;
+                            N2 = true;
+                        }
+
+                        <!-- Posizione 3 del tris -->
+                        if ((((pos[0] == 'O') && (pos[6] == 'O')) || ((pos[5] == 'O') && (pos[4] == 'O'))) && ((pos[3] != 'O') && (pos[3] != 'X') && (flag == false) && (N3 != true))) {
+                            document.getElementById('0,1').replaceWith('O');
+                            pos[3] = "O";
+                            p++;
+                            flag = true;
+                            N3 = true;
+                        }
+
+                        <!-- Posizione 4 del tris -->
+                        if ((((pos[0] == 'O') && (pos[8] == 'O')) || ((pos[6] == 'O') && (pos[2] == 'O')) || ((pos[1] == 'O') && (pos[7] == 'O')) || ((pos[3] == 'O') && (pos[5] == 'O'))) && ((pos[4] != 'O') && (pos[4] != 'X') && (flag == false) && (N4 != true))) {
+                            document.getElementById('1,1').replaceWith('O');
+                            pos[4] = "O";
+                            p++;
+                            flag = true;
+                            N4 = true;
+                        }
+
+                        <!-- Posizione 5 del tris -->
+                        if ((((pos[2] == 'O') && (pos[8] == 'O')) || ((pos[3] == 'O') && (pos[4] == 'O'))) && ((pos[5] != 'O') && (pos[5] != 'X') && (flag == false) && (N5 != true))) {
+                            document.getElementById('2,1').replaceWith('O');
+                            pos[5] = "O";
+                            p++;
+                            flag = true;
+                            N5 = true;
+                        }
+
+                        <!-- Posizione 6 del tris -->
+                        if ((((pos[0] == 'O') && (pos[3] == 'O')) || ((pos[2] == 'O') && (pos[4] == 'O')) || ((pos[8] == 'O') && (pos[7] == 'O'))) && ((pos[6] != 'O') && (pos[6] != 'X') && (flag == false) && (N6 != true))) {
+                            document.getElementById('0,2').replaceWith('O');
+                            pos[6] = "O";
+                            p++;
+                            flag = true;
+                            N6 = true;
+                        }
+
+                        <!-- Posizione 7 del tris -->
+                        if ((((pos[6] == 'O') && (pos[8] == 'O')) || ((pos[1] == 'O') && (pos[4] == 'O'))) && ((pos[7] != 'O') && (pos[7] != 'X') && (flag == false) && (N7 != true))) {
+                            document.getElementById('1,2').replaceWith('O');
+                            pos[7] = "O";
+                            p++;
+                            flag = true;
+                            N7 = true;
+                        }
+
+                        <!-- Posizione 8 del tris -->
+                        if ((((pos[2] == 'O') && (pos[5] == 'O')) || ((pos[6] == 'O') && (pos[7] == 'O')) || ((pos[0] == 'O') && (pos[4] == 'O'))) && ((pos[8] != 'O') && (pos[8] != 'X') && (flag == false) && (N8 != true))) {
+                            document.getElementById('2,2').replaceWith('O');
+                            pos[8] = "O";
+                            p++;
+                            flag = true;
+                            N8 = true;
+                        }
+
+                        if (flag == false) {
+                            <!-- Posizione 0 del tris -->
+                            if ((((pos[1] == 'X') && (pos[2] == 'X')) || ((pos[6] == 'X') && (pos[3] == 'X')) || ((pos[8] == 'X') && (pos[4] == 'X'))) && ((pos[0] != 'O') && (pos[0] != 'X') && (flag == false) && (N0 != true))) {
+                                document.getElementById('0,0').replaceWith('O');
+                                pos[0] = "O";
+                                p++;
+                                flag = true;
+                                N0 = true;
+                            }
+
+                            <!-- Posizione 1 del tris -->
+                            if ((((pos[0] == 'X') && (pos[2] == 'X')) || ((pos[7] == 'X') && (pos[4] == 'X'))) && ((pos[1] != 'O') && (pos[1] != 'X') && (flag == false) && (N1 != true))) {
+                                document.getElementById('1,0').replaceWith('O');
+                                pos[1] = "O";
+                                p++;
+                                flag = true;
+                                N1 = true;
+                            }
+
+                            <!-- Posizione 2 del tris -->
+                            if ((((pos[0] == 'X') && (pos[1] == 'X')) || ((pos[6] == 'X') && (pos[4] == 'X')) || ((pos[8] == 'X') && (pos[5] == 'X'))) && ((pos[2] != 'O') && (pos[2] != 'X') && (flag == false) && (N2 != true))) {
+                                document.getElementById('2,0').replaceWith('O');
+                                pos[2] = "O";
+                                p++;
+                                flag = true;
+                                N2 = true;
+                            }
+
+                            <!-- Posizione 3 del tris -->
+                            if ((((pos[0] == 'X') && (pos[6] == 'X')) || ((pos[5] == 'X') && (pos[4] == 'X'))) && ((pos[3] != 'O') && (pos[3] != 'X') && (flag == false) && (N3 != true))) {
+                                document.getElementById('0,1').replaceWith('O');
+                                pos[3] = "O";
+                                p++;
+                                flag = true;
+                                N3 = true;
+                            }
+
+                            <!-- Posizione 4 del tris -->
+                            if ((((pos[0] == 'X') && (pos[8] == 'X')) || ((pos[6] == 'X') && (pos[2] == 'X')) || ((pos[1] == 'X') && (pos[7] == 'X')) || ((pos[3] == 'X') && (pos[5] == 'X'))) && ((pos[4] != 'O') && (pos[4] != 'X') && (flag == false) && (N4 != true))) {
+                                document.getElementById('1,1').replaceWith('O');
+                                pos[4] = "O";
+                                p++;
+                                flag = true;
+                                N4 = true;
+                            }
+
+                            <!-- Posizione 5 del tris -->
+                            if ((((pos[2] == 'X') && (pos[8] == 'X')) || ((pos[3] == 'X') && (pos[4] == 'X'))) && ((pos[5] != 'O') && (pos[5] != 'X') && (flag == false) && (N5 != true))) {
+                                document.getElementById('2,1').replaceWith('O');
+                                pos[5] = "O";
+                                p++;
+                                flag = true;
+                                N5 = true;
+                            }
+
+                            <!-- Posizione 6 del tris -->
+                            if ((((pos[0] == 'X') && (pos[3] == 'X')) || ((pos[2] == 'X') && (pos[4] == 'X')) || ((pos[8] == 'X') && (pos[7] == 'X'))) && ((pos[6] != 'O') && (pos[6] != 'X') && (flag == false) && (N6 != true))) {
+                                document.getElementById('0,2').replaceWith('O');
+                                pos[6] = "O";
+                                p++;
+                                flag = true;
+                                N6 = true;
+                            }
+
+                            <!-- Posizione 7 del tris -->
+                            if ((((pos[6] == 'X') && (pos[8] == 'X')) || ((pos[1] == 'X') && (pos[4] == 'X'))) && ((pos[7] != 'O') && (pos[7] != 'X') && (flag == false) && (N7 != true))) {
+                                document.getElementById('1,2').replaceWith('O');
+                                pos[7] = "O";
+                                p++;
+                                flag = true;
+                                N7 = true;
+                            }
+
+                            <!-- Posizione 8 del tris -->
+                            if ((((pos[2] == 'X') && (pos[5] == 'X')) || ((pos[6] == 'X') && (pos[7] == 'X')) || ((pos[0] == 'X') && (pos[4] == 'X'))) && ((pos[8] != 'O') && (pos[8] != 'X') && (flag == false) && (N8 != true))) {
+                                document.getElementById('2,2').replaceWith('O');
+                                pos[8] = "O";
+                                p++;
+                                flag = true;
+                                N8 = true;
+                            }
+
+                            if (flag == false) {
+                                var exit = false;
+                                while (exit != true) {
+                                    var n = Math.floor(Math.random() * 9);
+                                    console.log("N: " + n);
+                                    if ((pos[n] != 'X') && (pos[n] != 'O')) {
+                                        switch (n) {
+                                            case 0:
+                                                document.getElementById('0,0').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N0 = true;
+                                                break;
+                                            case 1:
+                                                document.getElementById('1,0').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N1 = true;
+                                                break;
+                                            case 2:
+                                                document.getElementById('2,0').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N2 = true;
+                                                break;
+                                            case 3:
+                                                document.getElementById('0,1').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N3 = true;
+                                                break;
+                                            case 4:
+                                                document.getElementById('1,1').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N4 = true;
+                                                break;
+                                            case 5:
+                                                document.getElementById('2,1').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N5 = true;
+                                                break;
+                                            case 6:
+                                                document.getElementById('0,2').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N6 = true;
+                                                break;
+                                            case 7:
+                                                document.getElementById('1,2').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N7 = true;
+                                                break;
+                                            case 8:
+                                                document.getElementById('2,2').replaceWith('O');
+                                                pos[n] = 'O';
+                                                p++;
+                                                N8 = true;
+                                                break;
+                                        }
+                                        exit = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function Check() {
+            for(var i = 0; i < 9; i++){
+                console.log("i: "+ i + " " + pos[i] +" ");
+            }
+
+            if(mode == true) {
+                <!-- Tutte le X orizzontali -->
+                if (((pos[0] == 'X') && (pos[1] == 'X') && (pos[2] == 'X')) || ((pos[3] == 'X') && (pos[4] == 'X') && (pos[5] == 'X')) || ((pos[6] == 'X') && (pos[7] == 'X') && (pos[8] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai vinto! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le X verticali -->
+                if (((pos[0] == 'X') && (pos[3] == 'X') && (pos[6] == 'X')) || ((pos[1] == 'X') && (pos[4] == 'X') && (pos[7] == 'X')) || ((pos[2] == 'X') && (pos[5] == 'X') && (pos[8] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai vinto! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le X diagonali -->
+                if (((pos[0] == 'X') && (pos[4] == 'X') && (pos[8] == 'X')) || ((pos[2] == 'X') && (pos[4] == 'X') && (pos[6] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai vinto! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O orizzontali -->
+                if (((pos[0] == 'O') && (pos[1] == 'O') && (pos[2] == 'O')) || ((pos[3] == 'O') && (pos[4] == 'O') && (pos[5] == 'O')) || ((pos[6] == 'O') && (pos[7] == 'O') && (pos[8] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai perso, ritenta! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O verticali -->
+                if (((pos[0] == 'O') && (pos[3] == 'O') && (pos[6] == 'O')) || ((pos[1] == 'O') && (pos[4] == 'O') && (pos[7] == 'O')) || ((pos[2] == 'O') && (pos[5] == 'O') && (pos[8] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai perso, ritenta! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O diagonali -->
+                if (((pos[0] == 'O') && (pos[4] == 'O') && (pos[8] == 'O')) || ((pos[2] == 'O') && (pos[4] == 'O') && (pos[6] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai perso, ritenta! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+                console.log(p);
+                if ((p >= 9) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Hai pareggiato, ritenta! <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log(p + " pareggio");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+            }
+            else {
+                <!-- Tutte le X orizzontali -->
+                if (((pos[0] == 'X') && (pos[1] == 'X') && (pos[2] == 'X')) || ((pos[3] == 'X') && (pos[4] == 'X') && (pos[5] == 'X')) || ((pos[6] == 'X') && (pos[7] == 'X') && (pos[8] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: X. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le X verticali -->
+                if (((pos[0] == 'X') && (pos[3] == 'X') && (pos[6] == 'X')) || ((pos[1] == 'X') && (pos[4] == 'X') && (pos[7] == 'X')) || ((pos[2] == 'X') && (pos[5] == 'X') && (pos[8] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: X. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le X diagonali -->
+                if (((pos[0] == 'X') && (pos[4] == 'X') && (pos[8] == 'X')) || ((pos[2] == 'X') && (pos[4] == 'X') && (pos[6] == 'X')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: X. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O orizzontali -->
+                if (((pos[0] == 'O') && (pos[1] == 'O') && (pos[2] == 'O')) || ((pos[3] == 'O') && (pos[4] == 'O') && (pos[5] == 'O')) || ((pos[6] == 'O') && (pos[7] == 'O') && (pos[8] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: O. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O verticali -->
+                if (((pos[0] == 'O') && (pos[3] == 'O') && (pos[6] == 'O')) || ((pos[1] == 'O') && (pos[4] == 'O') && (pos[7] == 'O')) || ((pos[2] == 'O') && (pos[5] == 'O') && (pos[8] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: O. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+
+                <!-- Tutte le O diagonali -->
+                if (((pos[0] == 'O') && (pos[4] == 'O') && (pos[8] == 'O')) || ((pos[2] == 'O') && (pos[4] == 'O') && (pos[6] == 'O')) && (FlagCheck == false)) {
+                    document.getElementById("winner").innerHTML = "Vincitore: O. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                    console.log("Vinto");
+                    FlagCheck = true;
+                    AllFlag = true;
+                }
+            }
+            console.log(p);
+            if ((p >= 9) && (FlagCheck == false)) {
+                document.getElementById("winner").innerHTML = "Vincitore: Nessuno. <a href='https://lucalaspina.netsons.org/Tris'><br>Torna indietro</a>";
+                console.log(p + " pareggio");
+                FlagCheck = true;
+                AllFlag = true;
+            }
+        }
+
+        function menu(m){
+            document.getElementById("1v1").style.visibility = "hidden";
+            document.getElementById("1vsPC").style.visibility = "hidden";
+            document.getElementById("0,0").style.visibility = "visible";
+            document.getElementById("1,0").style.visibility = "visible";
+            document.getElementById("2,0").style.visibility = "visible";
+            document.getElementById("0,1").style.visibility = "visible";
+            document.getElementById("1,1").style.visibility = "visible";
+            document.getElementById("2,1").style.visibility = "visible";
+            document.getElementById("0,2").style.visibility = "visible";
+            document.getElementById("1,2").style.visibility = "visible";
+            document.getElementById("2,2").style.visibility = "visible";
+            document.getElementById("table").style.visibility = "hidden";
+            document.getElementById("back").style.visibility = "hidden";
+
+            if (m == "1v1") {
+                document.getElementById("winner").style.visibility = "visible";
+                mode = false;
+            }
+            else {
+                mode = true;
+                document.getElementById("winner").innerHTML = "";
+                document.getElementById("winner").style.visibility = "visible";
+                var sort = Math.floor(Math.random() * 2);
+                console.log(sort);
+                if(sort == 1) {
+                    var first = Math.floor(Math.random() * 4);
+                    p++;
+                    switch (first) {
+                        case 0:
+                            document.getElementById('0,0').replaceWith("O");
+                            pos[0] = "O";
+                            N0 = true;
+                            break;
+                        case 1:
+                            document.getElementById('2,0').replaceWith("O");
+                            pos[2] = "O";
+                            N2 = true;
+                            break;
+                        case 2:
+                            document.getElementById('2,2').replaceWith("O");
+                            pos[8] = "O";
+                            N8 = true;
+                            break;
+                        case 3:
+                            document.getElementById('0,2').replaceWith("O");
+                            pos[6] = "O";
+                            N6 = true;
+                            break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1> Tris </h1>
+        <h3>
+            <table id="table" style="text-align: center; border: 3px solid black; border-collapse: collapse; width: 20%;">
+                <tr>
+                    <th style="border: 3px solid black;">
+                        <p id="1v1" border=5 style="cursor: pointer" onclick="menu('1v1');">1 vs 1</p>
+                    </th>
+                    <th style="border: 3px solid black;">
+                        <p id="1vsPC" style="cursor: pointer" onclick="menu('1vsPC');">1 vs PC</p>
+                    </th>
+                </tr>
+            </table>
+        </h3>
+        <h2>
+            <a id="back" href="https://lucalaspina.netsons.org/">Vai al portfolio</a>
+        </h2>
+    </center>
+    <div>
+        <center>
+            <table>
+                <tr>
+                    <th>         <!--"x,y" ovvero: colonna,riga -->
+                        <button id="0,0" onclick="Change('0,0',0); Check();"></button>
+                        <button id="1,0" onclick="Change('1,0',1); Check();"></button>
+                        <button id="2,0" onclick="Change('2,0',2); Check();"></button>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <button id="0,1" onclick="Change('0,1',3); Check();"></button>
+                        <button id="1,1" onclick="Change('1,1',4); Check();"></button>
+                        <button id="2,1" onclick="Change('2,1',5); Check();"></button>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <button id="0,2" onclick="Change('0,2',6); Check();"></button>
+                        <button id="1,2" onclick="Change('1,2',7); Check();"></button>
+                        <button id="2,2" onclick="Change('2,2',8); Check();"></button>
+                    </th>
+                </tr>
+            </table>
+            <p id="winner" style="visibility: hidden">Vincitore: </p>
+        </center>
+    </div>
+</body>

@@ -1,0 +1,31 @@
+button{
+    height: 28px;
+    width: 27px;
+    visibility: hidden;
+    background-color: orange;
+    cursor: pointer;
+}
+
+
+div{
+    font-size: 30px;
+    text-align: center;
+}
+
+a{
+    color: #0FBDF0;
+}
+
+a:link {
+    color: #0FBDF0;
+}
+
+a:hover {
+      color: #0FBDF0;
+      border-bottom: .07em solid;
+}
+
+a:active {
+      color: #497DDD;
+      border-bottom: 1px dashed;
+}

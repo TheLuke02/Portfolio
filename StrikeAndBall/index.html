@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Strike&Ball</title>
+    <link rel="icon" type="image/png" href="https://lucalaspina.netsons.org/image/favicon.png"/>
+    <link href="stile.css" rel="stylesheet" type="text/css">
+    <script>
+        let nr = [4];
+        let nc;
+        let n = 0, i = 0, t = 0, tent = 0;
+        let flag = false, passflag = true;
+        let nrUse = "";
+        let result = ["/","/","/","/"];
+
+        set(true);
+
+        function set(where) {
+            if (where === true) {
+                nr[0] = Math.floor(Math.random() * 9 + 1);
+                while (flag !== true) {
+                    n = Math.floor(Math.random() * 10);
+                    if (n !== nr[0]) {
+                        nr[1] = n;
+                        flag = true;
+                    }
+                }
+                flag = false;
+
+                while (flag !== true) {
+                    n = Math.floor(Math.random() * 10);
+                    if ((n !== nr[0]) && (n !== nr[1])) {
+                        nr[2] = n;
+                        flag = true;
+                    }
+                }
+                flag = false;
+
+                while (flag !== true) {
+                    n = Math.floor(Math.random() * 10);
+                    if ((n !== nr[0]) && (n !== nr[1]) && (n !== nr[2])) {
+                        nr[3] = n;
+                        flag = true;
+                    }
+                }
+
+                for (i = 0; i < 4; i++)
+                    nr[i] = nr[i].toString();
+
+                nrUse = nr[0] + nr[1] + nr[2] + nr[3];
+                console.log("Numero: "+ nrUse);
+            }
+            else {
+                nc = document.Input.input.value;
+                nc = nc.trim();
+                i = 0;
+                t = 0;
+                while(i < 4) {
+                    while(t < 4) {
+                        if((nc[i] === nc[t]) && (t !== i) && (passflag === true) || (isNaN(nc[i]) === true) || ((Number(nc) > 9999) || (Number(nc) < 1000))) {
+                            passflag = false;
+                        }
+                        t++;
+                    }
+                    i++;
+                    t = 0;
+                }
+                if(passflag === false) {
+                    document.getElementById("state").innerHTML +="<br>"+ tent+"] Errore.<br>";
+                    document.Input.input.style = "border: 2px solid red";
+                }
+            }
+            console.log("Tentativo: "+ nc);
+        }
+
+        function Join_Game() {
+            if (passflag === true) {
+                if (nrUse === nc) {
+                    for (i = 0; i < 4; i++) {
+                        result[i] = "S";
+                    }
+                    document.getElementById("send").style.visibility = "hidden";
+                    document.Input.input.style = "border: 2px solid lime";
+                    tent++;
+                    document.getElementById("state").innerHTML += "<br>"+ tent +"] " + result + "<br><br>Congratulazioni, hai indovinato il numero in "+ tent +" tentativi.<br><a href='https://lucalaspina.netsons.org/StrikeAndBall'>Torna indietro.</a>";
+                    document.Input.input.readOnly = true;
+                } else {
+                    console.log("Tentativo: "+ nc);
+                    Check(nc, nrUse);
+                }
+            }
+            else {
+                passflag = true;
+            }
+        }
+
+        function Check(nc, nrUse) {
+            if(nc[0] === nrUse[0]) {
+                result[0] = "S";
+            }
+            else {
+                result[0] = Ball(0);
+            }
+
+            if(nc[1] === nrUse[1]) {
+                result[1] = "S";
+            }
+            else {
+                result[1] = Ball(1);
+            }
+
+            if(nc[2] === nrUse[2]) {
+                result[2] = "S";
+            }
+            else {
+                result[2] = Ball(2);
+            }
+
+            if(nc[3] === nrUse[3]) {
+                result[3] = "S";
+            }
+            else {
+                result[3] = Ball(3);
+            }
+            tent++;
+            document.Input.input.style = "border: 2px solid black";
+            document.getElementById("state").innerHTML += "<br>" + tent + "] "+ result + "<br>";
+        }
+
+        /**
+         * @return {string}
+         */
+        function Ball(pos) {
+            i = 0;
+            while(i < 4) {
+                if((i !== pos) && (nc[pos] === nrUse[i])) {
+                        return "B";
+                    }
+                i++;
+                }
+            return "/";
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <form name="Input">
+            Inserisci il tuo numero a 4 cifre: <input type="text" name="input" autocomplete="off" placeholder="Esempio: 1234">
+            <br><br>
+            <input id="send" type="button" value="Invia" onclick="set(false); Join_Game();">
+            <p id="state"> </p>
+            <p style="font-size: 20px">Benvenuto nello Strike&Ball!<br>Le regole sono semplici. Dovrai indovinare un numero compreso tra 1000 e 9999 seguendo le seguenti indicazioni:<br><br><b>- Il numero inserito non deve avere cifre ripetute.<br>- la S significa che la cifra inserita e' presente ed e' nella posizione esatta!<br>- La B significa che la cifra inserita e' presente ma nella posizione errata!<br>- Il segno / significa che la cifra inserita non e' presente!</b><br><br>Buon divertimento. :)<br><br><a href="https://lucalaspina.netsons.org//">Torna al portfolio</a> </p>
+        </form>
+    </center>
+</body>
+</html>
